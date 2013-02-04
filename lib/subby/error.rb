@@ -1,16 +1,18 @@
-module Error
+module Subby
+  module Error
 
-  class BasicError < StandardError
-    attr_reader :option
+    class BasicError < StandardError
+      attr_reader :option
 
-    def initialize option
-      @option = option
+      def initialize option
+        @option = option
+      end
     end
-  end
 
-  class InvalidParameter < BasicError
-  end
+    class InvalidParameter < BasicError
+    end
 
-  class InvalidSwitch < BasicError
+    class InvalidSwitch < BasicError
+    end
   end
 end
