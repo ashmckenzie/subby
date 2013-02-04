@@ -1,0 +1,8 @@
+require 'subby/command'
+require 'subby/config'
+require 'subby/error'
+require 'subby/option'
+require 'subby/parameter'
+require 'subby/runtime_config'
+require 'subby/switch'
+require 'subby/version'
