@@ -5,13 +5,6 @@ module Subby
 
     include OptionBase
 
-    attr_reader :options, :commands
-
-    def initialize
-      @options = {}
-      @commands = {}
-    end
-
     def create! input
       parse input
       validate_required

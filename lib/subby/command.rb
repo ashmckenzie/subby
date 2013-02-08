@@ -5,12 +5,11 @@ module Subby
 
     include OptionBase
 
-    attr_reader :name, :description, :options
+    attr_reader :name
 
     def initialize name, &blk
       @name = name
-      @options = {}
-      instance_eval(&blk)
+      instance_eval(&blk) if block_given?
     end
 
     def description description

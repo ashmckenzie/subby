@@ -1,16 +1,24 @@
 module Subby
   module OptionBase
 
+    def options
+      @options ||= {}
+    end
+
+    def commands
+      @commands ||= {}
+    end
+
     def switch name, description='', options={}
-      @options[name] = Switch.new(name, description, options)
+      options[name] = Switch.new(name, description, options)
     end
 
     def parameter name, description='', options={}
-      @options[name] = Parameter.new(name, description, options)
+      options[name] = Parameter.new(name, description, options)
     end
 
     def command name, &blk
-      @commands[name] = Command.new(name, &blk)
+      commands[name] = Command.new(name, &blk)
     end
 
     protected
