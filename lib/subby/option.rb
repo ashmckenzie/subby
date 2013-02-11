@@ -1,10 +1,10 @@
 module Subby
   class Option
 
-    attr_reader :name, :description, :options, :value
-    attr_writer :value
+    attr_reader :name, :description, :options
+    attr_accessor :value
 
-    def initialize name, description='', options={}
+    def initialize name, description, options={}
       @name = name
       @description = description
       @options = options
@@ -15,11 +15,11 @@ module Subby
     end
 
     def switch?
-      self.class == Subby::Switch
+      false
     end
 
     def parameter?
-      self.class == Subby::Parameter
+      false
     end
   end
 end
