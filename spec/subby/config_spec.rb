@@ -13,6 +13,14 @@ describe Subby::Config do
   end
 =end
 
+  describe 'accessors' do
+    describe '#commands' do
+      it 'returns an empty hash' do
+        subject.commands.should == {}
+      end
+    end
+  end
+
   describe '#create!' do
 
   end

@@ -5,46 +5,69 @@ describe Subby::Parameter do
 
   subject { Subby::Parameter }
 
-  context 'initialized' do
+  let(:description) { 'Description' }
+  let(:options) { {} }
 
-    let(:description) { 'Description' }
-    let(:options) { {} }
+  subject { Subby::Parameter.new('parameter_name', description, options) }
 
-    subject { Subby::Parameter.new('parameter_name', description, options) }
+  describe '#parameter?' do
 
-    describe '#parameter?' do
+    it 'returns true' do
+      subject.parameter?.should be_true
+    end
+  end
+
+  describe '#switch?' do
+
+    it 'returns false' do
+      subject.switch?.should be_false
+    end
+  end
+
+  describe '#required?' do
+
+    context 'with required option set to true' do
+      let(:options) { { required: true } }
 
       it 'returns true' do
-        subject.parameter?.should be_true
+        subject.required?.should be_true
       end
     end
 
-    describe '#valid?' do
+    context 'with required option set to false' do
+      let(:options) { { required: false } }
 
-      context 'with no value or format specified' do
-        it 'returns true' do
-          subject.valid?.should be_true
-        end
+      it 'returns false' do
+        subject.required?.should be_false
       end
+    end
+  end
 
-      context 'with an invalid value specified' do
+  describe '#valid?' do
 
-        let(:options) { { format: /\d+/ } }
-
-        it 'returns false' do
-          subject.value = 'invalid_value'
-          subject.valid?.should be_false
-        end
+    context 'with no value or format specified' do
+      it 'returns true' do
+        subject.valid?.should be_true
       end
+    end
 
-      context 'with a valid value specified' do
+    context 'with an invalid value specified' do
 
-        let(:options) { { format: /\d+/ } }
+      let(:options) { { format: /\d+/ } }
 
-        it 'returns false' do
-          subject.value = 123
-          subject.valid?.should be_true
-        end
+      it 'returns false' do
+        subject.value = 'invalid_value'
+        subject.valid?.should be_false
+      end
+    end
+
+    context 'with a valid value specified' do
+
+      let(:options) { { format: /\d+/ } }
+
+      it 'returns false' do
+        subject.value = 123
+        subject.valid?.should be_true
       end
     end
   end

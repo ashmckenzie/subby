@@ -1,9 +1,25 @@
-require 'subby/option'
-
 module Subby
-  class Parameter < Option
+  class Parameter
+
+    attr_reader :name, :description, :options
+    attr_accessor :value
+
+    def initialize name, description, options={}
+      @name = name
+      @description = description
+      @options = options
+    end
+
     def parameter?
       true
+    end
+
+    def switch?
+      false
+    end
+
+    def required?
+      options.fetch(:required, false)
     end
 
     def valid?

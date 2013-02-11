@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+# To run:
+#
+# examples/commands --help
+# examples/commands --switch
+# examples/commands --switch one
+
+lib = File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require_relative '../lib/subby'
+
+require 'pp'
+# require 'subby'
+
+subby = Subby.setup do
+
+  switch :switch, 'Optional switch'
+  parameter :number, 'Optional number parameter', format: /\d+/
+
+  command :one do
+    description 'Command one'
+    switch :command_switch, 'Optional command switch'
+    parameter :number, 'Optional number parameter', format: /\d+/
+  end
+
+  command :two do
+    description 'Command two'
+    parameter :string, 'Required string', format: /\w+/, required: true
+  end
+end
+
+pp subby

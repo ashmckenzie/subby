@@ -1,23 +1,18 @@
 module Subby
   module OptionBase
 
-    attr_accessor :options, :commands
+    attr_accessor :options
 
     def initialize
       @options = {}
-      @commands = {}
     end
 
-    def switch name, description, options={}
-      @options[name] = Switch.new(name, description, options)
+    def switch name, description
+      @options[name.to_s] = Switch.new(name, description)
     end
 
     def parameter name, description, options={}
-      @options[name] = Parameter.new(name, description, options)
-    end
-
-    def command name, &blk
-      @commands[name] = Command.new(name, &blk)
+      @options[name.to_s] = Parameter.new(name, description, options)
     end
 
     def is_valid_switch? name

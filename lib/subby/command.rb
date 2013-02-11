@@ -8,6 +8,7 @@ module Subby
     attr_reader :name
 
     def initialize name, &blk
+      super()
       @name = name
       instance_eval(&blk) if block_given?
     end

@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+# To run:
+#
+# examples/basic --help
+# examples/basic --required_string test
+# examples/basic --required_string test --switch
+# examples/basic --required_string test --switch --optional_number 123
+
+lib = File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require_relative '../lib/subby'
+
+require 'pp'
+# require 'subby'
+
+subby = Subby.setup do
+  switch :switch, 'Optional switch'
+  parameter :optional_number, 'Optional number parameter', format: /\d+/
+  parameter :required_string, 'Required string', format: /\w+/, required: true
+end
+
+pp subby

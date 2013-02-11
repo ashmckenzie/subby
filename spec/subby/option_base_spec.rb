@@ -11,18 +11,13 @@ describe Subby::OptionBase do
 
   let(:name) { 'name' }
   let(:description) { 'Description' }
+  let(:options) { {} }
 
   describe 'accessors' do
 
     describe '#options' do
       it 'returns an empty hash' do
         subject.options.should == {}
-      end
-    end
-
-    describe '#commands' do
-      it 'returns an empty hash' do
-        subject.commands.should == {}
       end
     end
   end
@@ -51,7 +46,7 @@ describe Subby::OptionBase do
   describe 'parameters' do
 
     before do
-      subject.parameter name, description
+      subject.parameter name, description, options
     end
 
     describe '#parameter' do
