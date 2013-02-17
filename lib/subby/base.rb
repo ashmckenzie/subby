@@ -5,6 +5,3 @@ require 'subby/parameter'
 require 'subby/runtime_config'
 require 'subby/switch'
 require 'subby/version'
-
-require 'pry'
-require 'ap'

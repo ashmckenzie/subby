@@ -24,7 +24,12 @@ module Subby
 
     def valid?
       return true if value.nil? && !options.fetch(:format, false)
-      options.fetch(:format) && value.to_s.match(options[:format]) ? true : false
+
+      options.fetch(:format) do
+        raise Error::InvalidParameter.new(self), 'Format not defined'
+      end
+
+      value.to_s.match(options[:format]) ? true : false
     end
   end
 end
